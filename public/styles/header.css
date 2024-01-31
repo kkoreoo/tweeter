@@ -1,0 +1,20 @@
+.header-page {
+  height: 520px;
+  width: 100%;
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1d2600;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
+  flex-direction:column;
+  color: white;
+}
+
+.header-user{
+  max-height: 50%;
+}
+
+.last-name {
+  font-weight: 300;
+}

@@ -18,8 +18,92 @@ body {
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  font-family: 'Source Sans 3', sans-serif;
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ .container {
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+ }
+
+ .tweets {
+  border: solid 4px;
+  padding: 18px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+ }
+
+ .tweets:hover {
+  box-shadow: 10px 5px 5px gray;
+ }
+
+ article.tweets header {
+  background-color: #f4f1ec;
+  background-image: none;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+ }
+
+ article img {
+  height: 70px;
+ }
+
+ .user-id {
+  display: flex;
+  align-items: center;;
+ }
+
+ article.tweets header p {
+  padding-left: 8px;
+  border-style: hidden;
+  font-weight: 300;
+ }
+
+ .username {
+  font-weight: 600;
+  opacity: 0.25;
+ }
+
+ p {
+  font-weight: 600;
+  border-style: hidden hidden solid hidden;
+  border-width: 4px;
+  border-color: #545149;
+  padding: 12px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+ }
+
+ article.tweets footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 12px;
+  padding-right: 12px;
+ }
+ 
+ article.tweets footer {
+  display: flex;
+  align-items: flex-end;
+ }
+
+ article.tweets i {
+  padding-left: 4px;
+  padding-right: 4px;
+  color: #4056A1;
+ }
+
+ article.tweets i:hover {
+  color: #FFDB58;
+ }
