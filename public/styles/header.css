@@ -5,16 +5,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1d2600;
-  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
+  background-color: #4056A1;
+  /* background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png"); */
   flex-direction:column;
   color: white;
 }
 
-.header-user{
-  max-height: 50%;
-}
-
 .last-name {
   font-weight: 300;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header-page {
+    height: 50%;
+    width: 27.3%;
+    padding-top: 40px;
+    margin: 3%;
+    margin-top: 15%;
+    float: left;
+  }
 }

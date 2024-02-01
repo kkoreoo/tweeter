@@ -125,3 +125,16 @@ body {
  .return-to-top:hover {
   box-shadow: 2px 4px 5px gray;
  }
+
+ /* Desktop Sizing */
+ @media only screen and (min-width: 1024px) {
+  .container {
+    width: 52.7%;
+    float: right;
+    margin: 7%;
+    margin-top: 15%;
+  }
+  main {
+    flex-direction: row;
+  }
+ }
