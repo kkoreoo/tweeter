@@ -4,38 +4,41 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function () {
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
+  //Timeago library to indicate how long ago the tweet was posted
+  jQuery("time.timeago").timeago();
+
+  //jQuery object of form element to submit tweet
+  const $tweetData = $('#post-tweet');
+
+  //Toggles tweet form
+  const $toggleTweetForm = $('.toggle-form');
+    $toggleTweetForm.on('click', () => {
+
+    if ($('.new-tweet').css("display") == 'none') {
+      $('.new-tweet').slideDown('slow');
+    } else {
+      $('.new-tweet').slideUp('slow');
     }
-  ];
-  
+  }); 
+
+
+  //Escape function to protect against XSS
+  const escape = function(str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
+  //Renders tweets onto website
   const renderTweets = function(tweets) {
+    $('#tweets-container').empty();
     for (const data of tweets) {
-      let tweet = createTweetElement(data);
-      $('#tweets-container').append(tweet);
+      let $tweet = createTweetElement(data);
+      $('#tweets-container').prepend($tweet);
     } 
   };
   
+  // Creates HTML structure for Tweet
   const createTweetElement = function (tweetData) {
     // tweet data
     const name = tweetData.user.name;
@@ -54,10 +57,10 @@ $(document).ready(function () {
           <span class="username">${handle}</span>
         </header>
         
-        <p>${text}</p>
+        <p>${escape(text)}</p>
         
         <footer>
-          <span>${dateCreated}</span>
+          <time class="timeago" datetime="${dateCreated}">${jQuery.timeago(dateCreated)}</time>
           <span>
             <i class="fa-solid fa-flag"></i> 
             <i class="fa-solid fa-retweet"></i> 
@@ -69,7 +72,49 @@ $(document).ready(function () {
     return $tweet;
   };
   
-  renderTweets(data);
+  // POST request sent to server when user submits a tweet
+  $tweetData.on("submit", function(event) {
+    event.preventDefault();
+
+    const data = $tweetData.serialize();
+    const $tweetLength = $('#tweet-text').val().length
+
+    if ($tweetLength === 0) {
+      const emptyForm = 'Soz, you need words in your tweet. Try putting some chars in. #kthxbye'
+      $(".error-message").html(emptyForm);
+      $('#invalid-input').slideDown("fast");
+
+    } else if ($tweetLength > 140) {
+      const overMaxChars = 'Too Long. Plz rspct our arbitrary limit of 140 chars. #kthxbye'
+      $('.error-message').html(overMaxChars);
+      $('#invalid-input').slideDown("fast");
+
+    } else {
+      $.ajax({
+        url: "/tweets",
+        type: "POST",
+        data,
+        success: () => {
+          $('#invalid-input').slideUp("fast");
+          loadTweets();
+        }, 
+      })
+    }
+  });
+
+  // GET request to retrieve tweets stored in DB
+  const loadTweets = function() {
+    $.ajax({
+      url: "/tweets",
+      type: "GET",
+      success: (tweets) => {
+        renderTweets(tweets);
+      }
+    })
+  };
+
+  loadTweets();
+
 });
 
 

@@ -15,10 +15,14 @@ nav {
   font-family: 'Bungee', sans-serif;
 }
 
-
-
 .fa-angles-down {
   color: red;
   display: flex;
   justify-content: center;
+}
+
+.toggle-form:hover {
+  color: #FFDB58;
+  cursor: pointer;
+  text-shadow: 1px 1px rgb(55, 54, 54);
 }
