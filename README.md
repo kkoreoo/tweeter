@@ -17,3 +17,8 @@ Tweeter is a simple, single-page AJAX-based Twitter clone. This project uses jQu
 - Node 5.10.x or above
 - Body-parser
 - md5
+
+## Screenshots
+
+!["Screenshot of Tweet desktop view](https://github.com/kkoreoo/tweeter/blob/master/docs/Tweeter-desktop-view.JPG?raw=true)
+!["Screenshot of tweet compose box"](https://github.com/kkoreoo/tweeter/blob/master/docs/tweet-box.JPG?raw=true)
