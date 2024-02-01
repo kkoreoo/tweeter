@@ -3,7 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function () {
+$(document).ready(function() {
   //Timeago library to indicate how long ago the tweet was posted
   jQuery("time.timeago").timeago();
 
@@ -12,15 +12,14 @@ $(document).ready(function () {
 
   //Toggles tweet form
   const $toggleTweetForm = $('.toggle-form');
-    $toggleTweetForm.on('click', () => {
+  $toggleTweetForm.on('click', () => {
 
     if ($('.new-tweet').css("display") == 'none') {
       $('.new-tweet').slideDown('slow');
     } else {
       $('.new-tweet').slideUp('slow');
     }
-  }); 
-
+  });
 
   //Escape function to protect against XSS
   const escape = function(str) {
@@ -35,11 +34,11 @@ $(document).ready(function () {
     for (const data of tweets) {
       let $tweet = createTweetElement(data);
       $('#tweets-container').prepend($tweet);
-    } 
+    }
   };
   
   // Creates HTML structure for Tweet
-  const createTweetElement = function (tweetData) {
+  const createTweetElement = function(tweetData) {
     // tweet data
     const name = tweetData.user.name;
     const avatar = tweetData.user.avatars;
@@ -47,6 +46,7 @@ $(document).ready(function () {
     const text = tweetData.content.text;
     const dateCreated = tweetData.created_at;
   
+    // HTML structure for tweet
     let $tweet = `
       <article class="tweets" id="tweets-container">
         <header>
@@ -67,7 +67,7 @@ $(document).ready(function () {
             <i class="fa-solid fa-heart"></i>
           </span>
         </footer>
-      </article>`
+      </article>`;
   
     return $tweet;
   };
@@ -77,28 +77,36 @@ $(document).ready(function () {
     event.preventDefault();
 
     const data = $tweetData.serialize();
-    const $tweetLength = $('#tweet-text').val().length
+    const $tweetLength = $('#tweet-text').val().length;
 
+    // Evaluates forms for empty or char limit submissions
     if ($tweetLength === 0) {
-      const emptyForm = 'Soz, you need words in your tweet. Try putting some chars in. #kthxbye'
+      const emptyForm = 'Soz, you need words in your tweet. Try putting some chars in. #kthxbye';
       $(".error-message").html(emptyForm);
       $('#invalid-input').slideDown("fast");
 
     } else if ($tweetLength > 140) {
-      const overMaxChars = 'Too Long. Plz rspct our arbitrary limit of 140 chars. #kthxbye'
+      const overMaxChars = 'Too Long. Plz rspct our arbitrary limit of 140 chars. #kthxbye';
       $('.error-message').html(overMaxChars);
       $('#invalid-input').slideDown("fast");
 
+      // Valid form submission
     } else {
       $.ajax({
         url: "/tweets",
         type: "POST",
         data,
         success: () => {
+          // If a invalid error was shown, will hide it
           $('#invalid-input').slideUp("fast");
+
+          // Clears the textarea
+          $('#tweet-text').val('');
+
+          //loads the newly submitted tweet
           loadTweets();
-        }, 
-      })
+        },
+      });
     }
   });
 
@@ -110,11 +118,9 @@ $(document).ready(function () {
       success: (tweets) => {
         renderTweets(tweets);
       }
-    })
+    });
   };
-
   loadTweets();
-
 });
 
 

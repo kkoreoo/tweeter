@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: #4056A1;
-  /* background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png"); */
+  background-image: url("https://www.transparenttextures.com/patterns/arches.png");
   flex-direction:column;
   color: white;
 }
@@ -15,6 +15,7 @@
   font-weight: 300;
 }
 
+/* Adjusts header when on viewed on a desktop */
 @media only screen and (min-width: 1024px) {
   .header-page {
     height: 50%;

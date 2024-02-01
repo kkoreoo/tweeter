@@ -20,7 +20,7 @@ $(document).ready(function() {
   const $returnToTop = $('.return-to-top');
   $(window).on('scroll', () => {
     // will only show button after scrolling down a little bit
-    if ($(window).scrollTop() > 200) {
+    if ($(window).scrollTop() > 100) {
       $returnToTop.show();
     } else {
       $returnToTop.hide();

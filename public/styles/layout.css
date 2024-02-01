@@ -21,10 +21,7 @@ body {
   font-family: 'Source Sans 3', sans-serif;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
-
+/* Styles for Tweets */
  .container {
   margin-left: 5%;
   margin-right: 5%;
@@ -106,9 +103,10 @@ body {
  }
 
  article.tweets i:hover {
-  color: #FFDB58;
+  color: #d4ae22;
  }
 
+ /* Styles for return to top button */
  .return-to-top {
   display: none;
   position: fixed;

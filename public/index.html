@@ -33,23 +33,21 @@
     <!-- Top nav bar (fixed) -->
     <nav>
       <span class="logo">tweeter</span>
-
       <div class="toggle-form">
         <span><strong>Write</strong> a new tweet</span>
-
         <div>
           <i class="fa-solid fa-angles-down"></i>
         </div>
-
       </div>
     </nav>
 
+    <!-- Displays User -->
     <header class="header-page">
       <div class="header-user">
         <img src="/images/profile-hex.png">
       </div>
       <div class="header-user">
-        <h2><span>First</span> <span class="last-name">Last</span></h2>
+        <h2><span>Alex</span> <span class="last-name">Le</span></h2>
       </div>
     </header>
 
@@ -58,29 +56,28 @@
       
       <!--Create New Tweet Form-->
       <section class="new-tweet">
+        <!-- Error header will appear for invalid form submissions -->
         <header id="invalid-input"> 
           <i class="fa-solid fa-triangle-exclamation"></i>
           <span class="error-message"></span>
           <i class="fa-solid fa-triangle-exclamation"></i>
         </header>
+
+        <!-- Form text & Character counter -->
         <form id="post-tweet">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
-    
           <div class="tweet-form">
             <span><button type="submit">Tweet</button></span>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
-
         </form>
       </section>
 
       <!--Displays Tweets-->
       <section id="tweets-container"></section>
-      
-      
-      
+  
     </main>
+    <!-- Return to top button -->
     <button class="return-to-top"><i class="fa-solid fa-angles-up"></i></button>
-
   </body>
 </html>
